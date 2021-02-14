@@ -83,7 +83,7 @@ Then
 marginNote('blah', ' blah')
 ```
 
-generates<sup>[1](#f1S)</sup>
+generates<sup>[1](#f1)</sup>
 
 ```html
 <label for="mn-i1" class="margin-toggle">⊕</label>
@@ -97,10 +97,13 @@ You can import any non-deprecated, non-experimental element listed in the MDN
 [HTML elements reference][1]. The JavaScript function names have the same name
 as the corresponding tag<sup>[2](#f2)</sup>.
 
-<a name="f1"><sup>1</sup></a>:  For clarity newlines are added to this HTML.
-Actually a single line is generated.
+-----
 
-<a name="f2"><sup>2</sup></a>: With the exception of `<var>x</var>` which you
-must write as `v('x')` because `var` is a reserved identifier in JavaScript.
+<sup id="f1">1. For clarity newlines are added to this HTML.
+Actually a single line is generated.</sup>
+
+<sup id="f2">2. With the exception of `<var>x</var>` which you
+must write as `v('x')` because `var` is a reserved identifier in
+JavaScript.</sup>
 
 [1]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
