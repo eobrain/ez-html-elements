@@ -1,14 +1,12 @@
 # Generation and composition of HTML from JavaScript
 
-Simple but powerful generation of HTML for JavaScript
-
-Import whatever tags you are using:
+Import functions for whatever tags you are using:
 
 ```js
 import { p, img } from 'ez-html-elements'
 ```
 
-There is a function corresponding to each tag that generates a string.
+These functions generate HTML as a string:
 
 | JavaScript | Generates | |
 | ----| ----| --- |
@@ -39,6 +37,8 @@ which generates
 <p id="the-id" class="foo bar">blah blah <img src="data:image" class="a"> more yet more</p>
 ```
 
+## Going beyond the basics
+
 The great power comes composition and using JavaScript to create component generators.
 
 For example you could define a custom generator like this:
@@ -59,7 +59,8 @@ generates
 <p class="subtitle">blah blah</p>
 ```
 
-Or as a more complicated case that really shows the power, say you define a custom generator like so:
+Or as a more complicated case that really shows the power, say you define a
+custom generator like so:
 
 ```js
 import { label, input, span } from 'ez-html-elements'
@@ -82,7 +83,7 @@ Then
 marginNote('blah', ' blah')
 ```
 
-generates (newlines added for clarity)
+generates<sup>[1](#f1S)</sup>
 
 ```html
 <label for="mn-i1" class="margin-toggle">⊕</label>
@@ -90,3 +91,16 @@ generates (newlines added for clarity)
 <span class="marginnote">blah blah</span>
 ```
 
+## Coverage
+
+You can import any non-deprecated, non-experimental element listed in the MDN
+[HTML elements reference][1]. The JavaScript function names have the same name
+as the corresponding tag<sup>[2](#f2)</sup>.
+
+<a name="f1"><sup>1</sup></a>:  For clarity newlines are added to this HTML.
+Actually a single line is generated.
+
+<a name="f2"><sup>2</sup></a>: With the exception of `<var>x</var>` which you
+must write as `v('x')` because `var` is a reserved identifier in JavaScript.
+
+[1]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
