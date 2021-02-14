@@ -1,0 +1,16 @@
+{
+  "name": "ez-html-elements",
+  "version": "0.0.1",
+  "description": "Generation and composition of HTML from JavaScript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "ava"
+  },
+  "author": "Eamonn O'Brien-Strain",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "bajel": "^1.1.0"
+  }
+}
