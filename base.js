@@ -12,6 +12,9 @@ const parseArgs = args => {
         }
         break
       case 'string':
+        if (content.length > 0) {
+          content += ' '
+        }
         content += arg
         break
       default:

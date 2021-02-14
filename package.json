@@ -1,6 +1,6 @@
 {
   "name": "ez-html-elements",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Generation and composition of HTML from JavaScript",
   "main": "index.js",
   "type": "module",

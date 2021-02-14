@@ -14,7 +14,7 @@ These functions generate HTML as a string:
 | `img()` | `<img>` | The closing tag is omitted from elements that don't need them. |
 | `p({ id: 'foo' })`<br><br>`img({ src: 'http://foo/bar.png' })` | `<p id="foo"></p>`<br><br>`<img src="http://foo/bar.png">` | An object argument generates attributes |
 |`p(['foo', 'bar'])`<br><br>`img(['big'])` | `<p class="foo bar"></p>`<br><br>`<img class="big">` | An array argument generates a `class` attribute. |
-`p('blah blah', ' more', ' yet more')` | `<p>blah blah more yet more</p>` | String arguments are concatenated as content. |
+`p('blah blah', 'more', 'yet more')` | `<p>blah blah more yet more</p>` | String arguments are concatenated, separated by spaces, as content. |
 | `p(img())` | `<p><img></p>` | Elements can be composed. |
 
 Here is an example that combines all the above
@@ -25,10 +25,10 @@ Here is an example that combines all the above
   t.deepEqual(p(
     ['foo', 'bar'],
     { id },
-    'blah blah ',
+    'blah blah',
     img(['a'], { src }),
-    ' more',
-    ' yet more')
+    'more',
+    'yet more')
 ```
 
 which generates
@@ -80,7 +80,7 @@ const marginNote = (...content) => {
 Then
 
 ```js
-marginNote('blah', ' blah')
+marginNote('blah', 'blah')
 ```
 
 generates<sup>[1](#f1)</sup>
@@ -97,6 +97,11 @@ You can import any non-deprecated, non-experimental element listed in the MDN
 [HTML elements reference][1]. The JavaScript function names have the same name
 as the corresponding tag<sup>[2](#f2)</sup>.
 
+## Projects using this library
+
+The [static-site generator code][2] that creates the HTML for the
+[mandelbrot.dev][3] website uses this library.
+
 -----
 
 <sup id="f1">1. For clarity newlines are added to this HTML.
@@ -107,3 +112,5 @@ must write as `v('x')` because `var` is a reserved identifier in
 JavaScript.</sup>
 
 [1]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+[2]: https://github.com/eobrain/mandelbrot/tree/main/src
+[3]: https://mandelbrot.dev/
