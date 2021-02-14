@@ -1,122 +1,122 @@
 
-const parseArgs = args => {
-  let dict = {}
-  let classes = []
-  let content = ''
-  for (const arg of args) {
-    switch (typeof arg) {
-      case 'object':
-        if (Array.isArray(arg)) {
-          classes = [...classes, ...arg]
-        } else {
-          dict = { ...dict, ...arg }
-        }
-        break
-      case 'string':
-        content += arg
-        break
-      default:
-        throw new Error(`"${arg}" is ${typeof arg} but must be object or string (${JSON.stringify(args)})`)
-    }
-  }
-  if (classes.length > 0) {
-    if (dict.class) {
-      dict.class += ' ' + classes.join(' ')
-    } else {
-      dict.class = classes.join(' ')
-    }
-  }
-  let attributes = ''
-  for (const key in dict) {
-    const value = dict[key]
-    switch (typeof value) {
-      case 'string': {
-        const quote = value.match(/"/) ? '\'' : '"'
-        attributes += ` ${key}=${quote}${value}${quote}`
-        break
-      }
-      case 'number':
-        attributes += ` ${key}="${value}"`
-        break
-      case 'boolean':
-        if (value) {
-          attributes += ` ${key}`
-        }
-        break
-      case 'object':
-        for (const subKey in value) {
-          const subValue = value[subKey]
-          switch (typeof subValue) {
-            case 'string': {
-              const quote = subValue.match(/"/) ? '\'' : '"'
-              attributes += ` ${key}:${subKey}=${quote}${subValue}${quote}`
-              break
-            }
-            case 'number':
-              attributes += ` ${key}="${value}"`
-              break
-            case 'boolean':
-              if (value) {
-                attributes += ` ${key}:${subKey}`
-              }
-              break
-            default:
-              throw new Error(`${key}="${value}" is a ${typeof value}, but expecting string or Boolean`)
-          }
-        }
-        break
-      default:
-        throw new Error(`${key}="${value}" is a ${typeof value}, but expecting string, Boolean, or object`)
-    }
-  }
-  return { attributes, content }
-}
+import { element, emptyElement } from './base.js'
 
-const element = tag => (...args) => {
-  const { attributes, content } = parseArgs(args)
-  return `<${tag}${attributes}>${content}</${tag}>`
-}
+// All non-deprecated, non-experimental self-closing elements listed in
+// https://developer.mozilla.org/en-US/docs/Glossary/Empty_element
+export const area = emptyElement('area')
+export const base = emptyElement('base')
+export const br = emptyElement('br')
+export const col = emptyElement('col')
+export const embed = emptyElement('embed')
+export const hr = emptyElement('hr')
+export const img = emptyElement('img')
+export const input = emptyElement('input')
+export const link = emptyElement('link')
+export const meta = emptyElement('meta')
+export const param = emptyElement('param')
+export const source = emptyElement('source')
+export const track = emptyElement('track')
+export const wbr = emptyElement('wbr')
 
-const voidElement = tag => (...args) => {
-  const { attributes, content } = parseArgs(args)
-  if (content) {
-    throw new Error(`<${tag}> is not allwed to have content`)
-  }
-  return `<${tag}${attributes}>`
-}
-
+// All non-deprecated, non-experimental elements listed in
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+// not already included in the self-closing list above.
 export const a = element('a')
+export const abbr = element('abbr')
+export const address = element('address')
 export const article = element('article')
+export const aside = element('aside')
+export const audio = element('audio')
+export const b = element('b')
+export const bdi = element('bdi')
+export const bdo = element('bdo')
+export const blockquote = element('blockquote')
 export const body = element('body')
+export const button = element('button')
+export const canvas = element('canvas')
+export const caption = element('caption')
+export const cite = element('cite')
+export const code = element('code')
+export const colgroup = element('colgroup')
+export const data = element('data')
+export const datalist = element('datalist')
+export const dd = element('dd')
+export const del = element('del')
+export const details = element('details')
+export const dfn = element('dfn')
+export const dialog = element('dialog')
+export const div = element('div')
+export const dl = element('dl')
+export const dt = element('dt')
 export const em = element('em')
+export const fieldset = element('fieldset')
+export const figcaption = element('figcaption')
 export const figure = element('figure')
+export const footer = element('footer')
+export const form = element('form')
+export const head = element('head')
+export const header = element('header')
 export const h1 = element('h1')
 export const h2 = element('h2')
 export const h3 = element('h3')
-export const head = element('head')
+export const h4 = element('h4')
+export const h5 = element('h5')
+export const h6 = element('h6')
 export const html = element('html')
+export const i = element('i')
+export const iframe = element('iframe')
+export const ins = element('ins')
+export const kbd = element('kbd')
 export const label = element('label')
+export const legend = element('legend')
+export const li = element('li')
+export const main = element('main')
+export const map = element('map')
+export const mark = element('mark')
+export const meter = element('meter')
+export const nav = element('nav')
+export const noscript = element('noscript')
+export const object = element('object')
+export const ol = element('ol')
+export const optgroup = element('optgroup')
+export const option = element('option')
+export const output = element('output')
 export const p = element('p')
+export const picture = element('picture')
+export const portal = element('portal')
+export const pre = element('pre')
+export const progress = element('progress')
+export const q = element('q')
+export const rb = element('rb')
+export const rp = element('rp')
+export const rt = element('rt')
+export const rtc = element('rtc')
+export const ruby = element('ruby')
+export const s = element('s')
+export const samp = element('samp')
 export const script = element('script')
 export const section = element('section')
+export const select = element('select')
+export const slot = element('slot')
+export const small = element('small')
 export const span = element('span')
+export const strong = element('strong')
 export const style = element('style')
+export const sub = element('sub')
+export const summary = element('summary')
 export const sup = element('sup')
+export const table = element('table')
+export const tbody = element('tbody')
+export const td = element('td')
+export const template = element('template')
+export const textarea = element('textarea')
+export const tfoot = element('tfoot')
+export const th = element('th')
+export const thead = element('thead')
+export const time = element('time')
 export const title = element('title')
+export const tr = element('tr')
+export const u = element('u')
+export const ul = element('ul')
+export const v = element('var') // to avoid reserved word "var"
 export const video = element('video')
-
-// All the self-closing elements
-export const area = voidElement('area')
-export const base = voidElement('base')
-export const br = voidElement('br')
-export const col = voidElement('col')
-export const embed = voidElement('embed')
-export const hr = voidElement('hr')
-export const img = voidElement('img')
-export const input = voidElement('input')
-export const link = voidElement('link')
-export const meta = voidElement('meta')
-export const param = voidElement('param')
-export const source = voidElement('source')
-export const track = voidElement('track')
-export const wbr = voidElement('wbr')
