@@ -1,5 +1,11 @@
 # Generation and composition of HTML from JavaScript
 
+Install:
+
+```sh
+npm install --save-dev ez-html-elements
+```
+
 Import functions for whatever tags you are using:
 
 ```js
@@ -20,15 +26,13 @@ These functions generate HTML as a string:
 Here is an example that combines all the above
 
 ```js
-  const id = 'the-id'
-  const src = 'data:image'
-  t.deepEqual(p(
-    ['foo', 'bar'],
-    { id },
-    'blah blah',
-    img(['a'], { src }),
-    'more',
-    'yet more')
+p(
+  ['foo', 'bar'],
+  { id },
+  'blah blah',
+  img(['a'], { src }),
+  'more',
+  'yet more')
 ```
 
 which generates
